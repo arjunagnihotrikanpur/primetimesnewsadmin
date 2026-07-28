@@ -36,6 +36,8 @@ export default function Categories() {
 
   const [editingTitle, setEditingTitle] = useState("");
 
+  const [editingOrder, setEditingOrder] = useState(9999);
+
   const [editingIcon, setEditingIcon] = useState("business");
 
   const [loading, setLoading] = useState(true);
@@ -110,6 +112,8 @@ export default function Categories() {
 
     setEditingTitle(category.title);
 
+    setEditingOrder(category.order);
+
     setEditingIcon(category.icon);
   };
 
@@ -120,7 +124,7 @@ export default function Categories() {
       title: editingTitle,
       icon: editingIcon,
       videos: category.videos || [],
-      order: category.order || 0,
+      order: editingOrder || category.order,
     });
 
     setEditingId(null);
@@ -390,6 +394,15 @@ export default function Categories() {
                       <input
                         value={editingTitle}
                         onChange={(e) => setEditingTitle(e.target.value)}
+                        style={{
+                          ...inputStyle,
+                          marginBottom: "14px",
+                        }}
+                      />
+
+                      <input
+                        value={editingOrder}
+                        onChange={(e) => setEditingOrder(e.target.value)}
                         style={{
                           ...inputStyle,
                           marginBottom: "14px",
